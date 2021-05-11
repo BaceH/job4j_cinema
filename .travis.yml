@@ -1,0 +1,20 @@
+language: java
+
+jdk:
+  - openjdk15
+
+sudo: false
+
+env:
+  global:
+    - CODECOV_TOKEN="7a2e2295-e5ee-450d-a181-52393c3b3e13"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      -vasyl.byalyk@gmail.com
+    on_success: never # default: change
+    on_failure: always # default: always
