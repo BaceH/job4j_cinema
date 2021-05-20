@@ -34,5 +34,22 @@
 <!--        <url-pattern>/posts.do</url-pattern>-->
 <!--    </servlet-mapping>-->
 
+    <servlet>
+        <servlet-name>HallServlet</servlet-name>
+        <servlet-class>ru.job4j.cinema.servlet.HallServlet</servlet-class>
+    </servlet>
 
+
+    <servlet-mapping>
+        <servlet-name>HallServlet</servlet-name>
+        <url-pattern>/all-tickets</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HallServlet</servlet-name>
+        <url-pattern>/sold-tickets</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HallServlet</servlet-name>
+        <url-pattern>/booked-tickets</url-pattern>
+    </servlet-mapping>
 </web-app>

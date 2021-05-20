@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <div class="container">
   <div class="row pt-3">
@@ -56,6 +57,67 @@
   <div class="row float-right">
     <button type="button" class="btn btn-success">Оплатить</button>
   </div>
+  <p><button type="button" class="btn btn-default" onclick="return sold();">sold</button></p>
+  <p><button type="button" class="btn btn-default" onclick="return booked();">booked</button></p>
 </div>
+
+<script>
+  $(document).ready(function() {
+
+    getCity();
+    function getCity() {
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8081/cinema/all-tickets',
+        data: "{text : 'allTickets'}",
+        dataType: 'json'
+      }).done(function(data) {
+        alert(data.ticket);
+        // Object.entries(data).forEach(([key, value]) => {
+        //   let option;
+        //   if ('<%=candidate.getCityId()%>' === key) {
+        //     option = "<option value='" + key + "' selected>" + value + "</option>";
+        //   } else {
+        //     option = "<option value='" + key + "'>" + value + "</option>";
+        //   }
+        //   $('#city-list').find('option:last').after(option);
+        // });
+        // $('#').before('<h1>' + data.textRes + '</h1>');
+        // $('#exampleInputEmail1').val('');
+      }).fail(function(err){
+        alert("error \n" + err );
+      });
+    }
+
+
+  });
+
+  function sold() {
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8081/cinema/sold-tickets',
+      data: "{text : 'allTickets'}",
+      dataType: 'json'
+    }).done(function(data) {
+      alert(data.ticket);
+    }).fail(function(err){
+      alert("error \n" + err );
+    });
+  }
+
+  function booked() {
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8081/cinema/booked-tickets',
+      data: "{text : 'allTickets'}",
+      dataType: 'json'
+    }).done(function(data) {
+      alert(data.ticket);
+    }).fail(function(err){
+      alert("error \n" + err );
+    });
+  }
+</script>
 </body>
 </html>
